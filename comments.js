@@ -20,7 +20,7 @@ comments.delete = function (req, res, payload, cb) {
     }
 };
 
-comments.create = function (req, res, payload, cb) {
+comments.create = function (req, res, load, cb) {
     if (validation.isCommentValid(payload)) {
         const idx = _articles.findIndex(article => article.id === payload.id);
 
