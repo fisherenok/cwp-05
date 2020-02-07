@@ -8,7 +8,7 @@ articles.readAll = function (req, res, payload, cb) {
 };
 
 articles.read = function (req, res, payload, cb) {
-    let idx = _articles.findIndex(article => article.id === payload.id)
+    const idx = _articles.findIndex(article => article.id === payload.id)
     if (idx !== -1) {
         cb(null, _articles[idx])
     } else {
@@ -17,7 +17,7 @@ articles.read = function (req, res, payload, cb) {
 };
 
 articles.delete = function (req, res, payload, cb) {
-    let idx = _articles.findIndex(article => article.id === payload.id)
+    const idx = _articles.findIndex(article => article.id === payload.id)
     if (idx !== -1) {
         _articles.splice(idx, 1);
         cb(null, _articles);
@@ -29,7 +29,7 @@ articles.delete = function (req, res, payload, cb) {
 
 articles.update = function (req, res, payload, cb) {
    if (validation.isArticleValid(payload)) {
-       let idx = _articles.findIndex(article => article.id === payload.id)
+       const idx = _articles.findIndex(article => article.id === payload.id)
        if (idx !== -1) {
            _articles[idx] = payload;
            cb(null, payload);
