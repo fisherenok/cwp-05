@@ -4,8 +4,7 @@ const validation = require('./validations')
 const comments = exports;
 
 comments.delete = function (req, res, payload, cb) {
-    const idxA = _articles.findIndex(article => article.id === payload.id);
-
+    const idxA = _articles.findIndex(article => article.id === payload.articleId);
     if (idxA !== -1) {
         const idxC = _articles[idxA].comments.findIndex(com => com.id === payload.id);
         if (idxC !== -1) {
@@ -20,9 +19,9 @@ comments.delete = function (req, res, payload, cb) {
     }
 };
 
-comments.create = function (req, res, load, cb) {
+comments.create = function (req, res, payload, cb) {
     if (validation.isCommentValid(payload)) {
-        const idx = _articles.findIndex(article => article.id === payload.id);
+        const idx = _articles.findIndex(article => article.id === payload.articleId);
 
         if (idx !== -1) {
             payload.id = extras.generateId();
