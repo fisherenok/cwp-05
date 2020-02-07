@@ -18,7 +18,7 @@ extras.saveArticles = function (data) {
     })
 };
 
-extras.logRequset = function (url, body, time) {
+extras.logReq = function (url, body, time) {
     fs.appendFile('logs/' + Date.now().toISOString().slice(0,10),replace(/-/g, ''),
         time + " :\n" + "\turl : " + url + "\n\tbody : " + body + "\n", err => {
             if (err) {

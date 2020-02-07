@@ -26,7 +26,7 @@ comments.create = function (req, res, payload, cb) {
         if (idx !== -1) {
             payload.id = extras.generateId();
             _articles[idx].comments.push(payload);
-            cb(null, _articles);
+            cb(null, _articles[idx].comments[_articles[idx].comments.length - 1]);
             extras.saveArticles(_articles);
         } else {
             cb({code: 405, message: 'Article not found'});

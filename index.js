@@ -1,6 +1,7 @@
 const http = require('http');
 const articles = require('./articles');
 const comments = require('./comments');
+const extras = require('./extras')
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -52,14 +53,18 @@ function sum(req, res, payload, cb) {
 
 function parseBodyJson(req, cb) {
     let body = [];
-
-    req.on('data', function(chunk) {
+    req.on('data', function (chunk) {
         body.push(chunk);
-    }).on('end', function() {
+    }).on('end', function () {
         body = Buffer.concat(body).toString();
-
-        let params = JSON.parse(body);
-
-        cb(null, params);
+        extras.logReq(req.url, body, new Date().toISOString());
+        console.log("body : " + body);
+        if (body !== "") {
+            params = JSON.parse(body);
+            cb(null, params);
+        }
+        else {
+            cb(null, null);
+        }
     });
 }
